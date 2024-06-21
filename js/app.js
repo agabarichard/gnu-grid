@@ -171,11 +171,15 @@ function editRow(tableId, rowId) {
     const lastName = row.cells[2].innerText;
     const email = row.cells[3].innerText;
 
+    //For farmers Dashboard
+     
+
     // Populate modal with current values
     document.getElementById('editRowId').value = rowId;
     document.getElementById('editFirstName').value = firstName;
     document.getElementById('editLastName').value = lastName;
     document.getElementById('editEmail').value = email;
+    
 
     // Show the modal
     const editModal = new bootstrap.Modal(document.getElementById('editModal'));
@@ -223,6 +227,78 @@ function showSection(sectionId) {
     });
 }
 
+//Farmers dashboard
+
+// Function to edit a row
+function editRow(tableId, rowId) {
+    // Get the table and row
+    const table = document.getElementById(tableId);
+    const row = table.rows[rowId];
+
+    // Get current values
+    const nameoftheproduct = row.cells[1].innerText;
+    const category = row.cells[2].innerText;
+    const sellingPrice = row.cells[3].innerText;
+    const imageoftheprodect = row.cles[4].innerText
+
+    //For farmers Dashboard
+     
+
+    // Populate modal with current values
+    document.getElementById('editRowId').value = rowId;
+    document.getElementById('editnameoftheproduct').value = nameoftheproduct;
+    document.getElementById('editcategory').value = category;
+    document.getElementById('editsellingprice').value = sellingPrice;
+    document.getElementById('editimageoftheproduct').value = imageoftheprodect;
+    
+
+    // Show the modal
+    const editModal = new bootstrap.Modal(document.getElementById('editModal'));
+    editModal.show();
+}
+
+// Function to save edits
+function saveEdit() {
+    // Get updated values from the form
+    const rowId = document.getElementById('editRowId').value;
+    const nameoftheproduct = document.getElementById('editnameoftheproduct').value;
+    const category = document.getElementById('editcategory').value;
+    const sellingPrice = document.getElementById('editsellingprice').value;
+    const imageoftheprodect = document.getElementById('editimageoftheproduct').value;
+
+    // Find the table based on the active section
+    const activeSection = document.querySelector('.content-section.active');
+    const tableId = activeSection.querySelector('table').id;
+    const table = document.getElementById(tableId);
+
+    // Update the row with new values
+    const row = table.rows[rowId];
+    row.cells[1].innerText = nameoftheproduct;
+    row.cells[2].innerText = category;
+    row.cells[3].innerText = sellingPrice;
+    row.cell [4].innerText = imageoftheprodect
+
+    // Hide the modal
+    const editModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+    editModal.hide();
+}
+
+// Function to delete a row
+function deleteRow(tableId, rowId) {
+    const table = document.getElementById(tableId);
+    table.deleteRow(rowId);
+}
+
+// Function to switch sections
+function showSection(sectionId) {
+    const sections = document.querySelectorAll('.content-section');
+    sections.forEach(section => {
+        section.classList.remove('active');
+        if (section.id === sectionId) {
+            section.classList.add('active');
+        }
+    });
+}
 
 
 
